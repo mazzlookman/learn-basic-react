@@ -4,7 +4,7 @@ export default function Todo(props) {
         return null;    
     } else {
         return (
-            <li>{ text } { (isCompleted) && '🔥' }</li>
+            <li> { text } { (isCompleted) && '🔥' }</li>
         )
     }
 }
