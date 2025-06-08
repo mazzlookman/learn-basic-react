@@ -1,7 +1,11 @@
 export default function HelloWorld() {
+    const props = {
+        text : "Hello, World! Props",
+    }
+
     return (
         <div>
-            <HeaderHelloWorld text="Hello, World! Props"/>
+            <HeaderHelloWorld {...props}/>
             <BodyHelloWorld />
         </div>
     )
