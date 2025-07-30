@@ -15,6 +15,10 @@ export default function ProductList(){
     }
 
     useEffect(() => {
+        console.log("Only once at the first render");
+    }, []);
+
+    useEffect(() => {
         if (load) {
             console.log("Loading...")
             fetch('/products.json')
