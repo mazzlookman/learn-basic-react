@@ -3,20 +3,34 @@ import Product from "./Product.jsx";
 
 export default function ProductList(){
     const [products, setProducts] = useState([]);
-    const loaded = useRef(false);
+    const [load, setLoad] = useState(false);
+    // const loaded = useRef(false);
+
+    function handleLoad() {
+        setLoad(true);
+    }
+
+    function handleUnload() {
+        setLoad(false);
+    }
 
     useEffect(() => {
-        if (loaded.current === false) {
+        if (load) {
+            console.log("Loading...")
             fetch('/products.json')
                 .then(res => res.json())
                 .then(data => setProducts(data))
-                .then(() => loaded.current = true)
+        } else {
+            console.log("Unloading...")
+            setProducts([]);
         }
-    });
+    }, [load]);
 
     return (
         <>
             <h1>List Product</h1>
+            <button onClick={handleLoad}>Load products</button>
+            <button onClick={handleUnload}>Unload products</button>
             {products.map(product => (
                 <Product key={product.id} product={product} />
             ))}
